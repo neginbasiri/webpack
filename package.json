@@ -2,7 +2,7 @@
   "name": "es2015",
   "version": "1.0.0",
   "description": "",
-  "main": "gulpfile.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,6 +15,7 @@
     "browser-sync": "^2.12.5",
     "browserify": "^13.0.1",
     "css-loader": "^0.23.1",
+    "ejs-compiled-loader": "^2.1.1",
     "eslint-plugin-react": "^5.0.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "gulp": "^3.9.1",

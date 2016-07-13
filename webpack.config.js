@@ -8,12 +8,11 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   context: __dirname,
-  entry: {
-    vendor: [
-      "jquery"
-    ],
-    app: __dirname + "/src/app.js"
-  },
+  entry: [
+    'webpack/hot/dev-server',
+    'webpack-dev-server/client?http://localhost:8080',
+     "./src/app.js"
+  ],
   output: {
     path: __dirname + "/dist",
     publicPath: __dirname,
@@ -41,7 +40,10 @@ module.exports = {
     new ExtractTextPlugin("accStyle.css",{
       allChunks: true
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.ProvidePlugin({
+      _: "underscore"
+    })
   ],
   module: {
     loaders: [
@@ -66,6 +68,9 @@ module.exports = {
   devtool: "#inline-source-map",
   devServer: {
     hot: true,
-    port: 8080
+    port: 8080,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    }
   }
 };

@@ -8,6 +8,6 @@ require("../src/scss/accStyles.scss");
 import * as navigation from './components/navigation/navigation';
 
 $( () => {
-console.log('test');
+console.log('test-none');
 
 });
