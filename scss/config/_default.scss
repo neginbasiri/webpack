@@ -1,0 +1,18 @@
+$body-font-size: 10px !default;
+$body-font-family: 'robotoregular';
+$body-line-height: 1.5 !default;
+
+
+$width-small-start:   320px;
+$width-small:         640px;
+$width-medium-start:  641px;
+$width-medium:        768px;
+$width-large-start:   769px;
+$width-large:         990px;
+$width-page:          1366px;
+$width-text-page:     1060px;
+
+$breakpoint-sm: 'only screen and (min-width: #{$width-small-start})' !default;
+$breakpoint-md: 'only screen and (min-width: #{$width-medium-start})' !default;
+$breakpoint-lg: 'only screen and (min-width: #{$width-large-start})' !default;
+$breakpoint-page: 'only screen and (min-width: #{$width-page})' !default;

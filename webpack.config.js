@@ -10,6 +10,7 @@ const path = require('path');
 // ];
 
 module.exports = {
+  context: __dirname,
   entry: './main.js',
   output: {
     path: path.join(__dirname, 'build'),
@@ -32,7 +33,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
       }
     ]
   },

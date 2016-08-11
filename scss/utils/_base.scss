@@ -1,0 +1,14 @@
+html {
+  font-size: $body-font-size;
+}
+body {
+  font-family: $body-font-family;
+  line-height: $body-line-height;
+  font-size: $body-font-size;
+}
+
+* {
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+}

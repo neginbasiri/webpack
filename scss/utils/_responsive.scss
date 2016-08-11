@@ -1,0 +1,21 @@
+
+@mixin respond-to( $screen-type ) {
+  @if $screen-type == small-screens {
+    @media only screen and ( min-width: $width-small-start ) and (max-width: $width-small) {
+      @content;
+    }
+  }
+
+  @else if $screen-type == medium-screens {
+    @media only screen and ( min-width: $width-medium-start ) and ( max-width: $width-medium ) {
+      @content;
+    }
+  }
+
+  @else if $screen-type == large-screens {
+    @media only screen and ( min-width: $width-large-start ) {
+      @content;
+    }
+  }
+
+}
