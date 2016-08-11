@@ -1,76 +1,48 @@
-/**
- * Created by negin.basiri on 12/07/2016.
- */
-const webpack = require('webpack');
-const ModernizrWebpackPlugin = require('modernizr-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+const autoprefixer = require('autoprefixer');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
+
+// const sassLoaders = [
+//   'css-loader',
+//   'postcss-loader',
+//   'sass-loader?sourceMap&indentedSyntax=sass&includePaths[]=' + path.resolve(__dirname, './scss')
+// ];
 
 module.exports = {
-  context: __dirname,
-  entry: [
-    'webpack/hot/dev-server',
-    'webpack-dev-server/client?http://localhost:8080',
-     "./src/app.js"
-  ],
+  entry: './main.js',
   output: {
-    path: __dirname + "/dist",
-    publicPath: __dirname,
-    filename: "[name].js",
-    chunkFilename: "[name].css"
+    path: path.join(__dirname, 'build'),
+    filename: 'bundle.js'
   },
-  plugins: [
-    new webpack.ProvidePlugin({
-      $: "jquery"
-    }),
-    new ModernizrWebpackPlugin({
-      filename: 'modernizr.js',
-      options: [
-        'mq'
-      ],
-      'feature-detects': [
-        'touchevents',
-        'css/mediaqueries'
-      ]
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      file: 'vendor.js'
-    }),
-    new ExtractTextPlugin("accStyle.css",{
-      allChunks: true
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.ProvidePlugin({
-      _: "underscore"
-    })
-  ],
+  devtool: '#inline-source-map',
+  devServer: {
+    inline: true,
+    port: 3333
+  },
   module: {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
         exclude: /node_modules/,
+        loader: 'babel',
         query: {
           presets: ['es2015', 'react']
         }
       },
       {
         test: /\.scss$/,
-        exclude: /(node_modules)/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass")
+        loaders: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
       }
     ]
   },
-  node: {
-    fs: "empty"
-  },
-  devtool: "#inline-source-map",
-  devServer: {
-    hot: true,
-    port: 8080,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    }
-  }
+  plugins: [
+    new ExtractTextPlugin('styles.css')
+  ],
+  postcss: [
+    autoprefixer({
+      browsers: ['last 2 versions']
+    })
+
+  ]
 };
