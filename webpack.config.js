@@ -2,6 +2,8 @@
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
+const Webpack = require('webpack');
+const Validator = require('webpack-validator');
 
 // const sassLoaders = [
 //   'css-loader',
@@ -9,12 +11,15 @@ const path = require('path');
 //   'sass-loader?sourceMap&indentedSyntax=sass&includePaths[]=' + path.resolve(__dirname, './scss')
 // ];
 
-module.exports = {
+module.exports = Validator({
   context: __dirname,
-  entry: './main.js',
+  entry: {
+    app: './main.js',
+    vendor: ['jquery', 'react', 'react-dom']
+  },
   output: {
     path: path.join(__dirname, 'build'),
-    filename: 'bundle.js'
+    filename: 'bundle.[name].js'
   },
   devtool: '#inline-source-map',
   devServer: {
@@ -38,7 +43,10 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('styles.css')
+    new ExtractTextPlugin('styles.css'),
+    new Webpack.optimize.CommonsChunkPlugin({
+      name: "vendor"
+    })
   ],
   postcss: [
     autoprefixer({
@@ -46,4 +54,4 @@ module.exports = {
     })
 
   ]
-};
+});
