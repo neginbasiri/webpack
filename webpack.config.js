@@ -14,7 +14,7 @@ const Validator = require('webpack-validator');
 module.exports = Validator({
   context: __dirname,
   entry: {
-    app: './main.js',
+    app: './src/js/main.js',
     vendor: ['jquery', 'react', 'react-dom']
   },
   output: {
@@ -26,6 +26,7 @@ module.exports = Validator({
     inline: true,
     port: 3333
   },
+  watch: true,
   module: {
     loaders: [
       {
@@ -38,7 +39,7 @@ module.exports = Validator({
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader!autoprefixer-loader!sass-loader")
       }
     ]
   },
