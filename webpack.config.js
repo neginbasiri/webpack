@@ -5,11 +5,6 @@ const path = require('path');
 const Webpack = require('webpack');
 const Validator = require('webpack-validator');
 
-// const sassLoaders = [
-//   'css-loader',
-//   'postcss-loader',
-//   'sass-loader?sourceMap&indentedSyntax=sass&includePaths[]=' + path.resolve(__dirname, './scss')
-// ];
 
 module.exports = Validator({
   context: __dirname,
@@ -21,7 +16,7 @@ module.exports = Validator({
     path: path.join(__dirname, 'build'),
     filename: 'bundle.[name].js'
   },
-  devtool: '#inline-source-map',
+  devtool: 'eval',
   devServer: {
     inline: true,
     port: 3333
@@ -34,17 +29,16 @@ module.exports = Validator({
         exclude: /node_modules/,
         loader: 'babel',
         query: {
-          presets: ['es2015', 'react']
+          presets: [['es2015', {modules: false}], 'react']
         }
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader!autoprefixer-loader!sass-loader")
+        loaders: ['style', 'css', 'sass']
       }
     ]
   },
   plugins: [
-    new ExtractTextPlugin('styles.css'),
     new Webpack.optimize.CommonsChunkPlugin({
       name: "vendor"
     })
