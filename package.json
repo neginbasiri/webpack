@@ -4,7 +4,10 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server --env.dev --content-base build",
+    "build": "webpack --end-dev",
+    "build:prod": "webpack --env.prod -p",
+    "lint": "eslint ."
   },
   "author": "negin",
   "license": "ISC",
@@ -21,7 +24,6 @@
     "eslint": "^3.2.2",
     "eslint-plugin-react": "^6.0.0",
     "extract-text-webpack-plugin": "^1.0.1",
-    "i": "^0.3.5",
     "jquery": "^3.1.0",
     "node-sass": "^3.8.0",
     "path": "^0.12.7",
@@ -30,8 +32,8 @@
     "react-dom": "^15.3.0",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.14.1",
+    "webpack": "^2.1.0-beta.4",
+    "webpack-dev-server": "^2.0.0-beta",
     "webpack-validator": "^2.2.7"
   }
 }
