@@ -5,7 +5,9 @@
   "main": "main.js",
   "scripts": {
     "start": "webpack-dev-server --env.dev --content-base build",
-    "build": "webpack --end-dev",
+    "clean-build": "rimraf build",
+    "prebuild": "npm run clean-build",
+    "build": "webpack --end.dev",
     "build:prod": "webpack --env.prod -p",
     "lint": "eslint ."
   },
@@ -34,6 +36,7 @@
     "style-loader": "^0.13.1",
     "webpack": "^2.1.0-beta.4",
     "webpack-dev-server": "^2.0.0-beta",
-    "webpack-validator": "^2.2.7"
+    "webpack-validator": "^2.2.7",
+    "rimarf": "latest"
   }
 }
