@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --env.dev --content-base build",
     "clean-build": "rimraf build",
     "prebuild": "npm run clean-build",
-    "build": "webpack --end.dev",
+    "build": "webpack --env.dev",
     "build:prod": "webpack --env.prod -p",
     "lint": "eslint ."
   },
@@ -25,7 +25,6 @@
     "css-loader": "^0.24.0",
     "eslint": "^3.2.2",
     "eslint-plugin-react": "^6.0.0",
-    "extract-text-webpack-plugin": "^1.0.1",
     "jquery": "^3.1.0",
     "node-sass": "^3.8.0",
     "path": "^0.12.7",
